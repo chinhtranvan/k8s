@@ -42,6 +42,7 @@ func main() {
 
 func GetMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json") // Setup the header to be JSON
+	json.NewEncoder(w).Encode(movies)                  // Encode the movies to JSON and send it to the user
 }
 
 func DeleteMovie(w http.ResponseWriter, r *http.Request) {
