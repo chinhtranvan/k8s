@@ -36,6 +36,12 @@ func main() {
 	r.HandleFunc("/movies", UpdateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", DeleteMovie).Methods("DELETE")
 
+	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Health check endpoint hit")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK\n\n"))
+	}).Methods("GET")
+
 	fmt.Print("Starting server on :8000\n")
 	http.ListenAndServe(":8000", r)
 }
